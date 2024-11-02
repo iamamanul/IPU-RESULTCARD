@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Scorecard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .scorecard-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .scorecard-container h1 {
+            text-align: center;
+            color: #4444cc;
+            font-size: 24px;
+            margin: 10px 0;
+        }
+
+        .scorecard-container h2 {
+            text-align: center;
+            color: #333;
+            font-size: 20px;
+            margin: 5px 0;
+        }
+
+        .personal-details {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .personal-details p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #4444cc;
+            color: #ffffff;
+        }
+
+        .total-row {
+            background-color: #e0e0ff;
+            font-weight: bold;
+        }
+
+        .calculate-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #4444cc;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .calculate-btn:hover {
+            background-color: #3333bb;
+        }
+    </style>
+</head>
+<body>
+
+<div class="scorecard-container">
+    <h1>Bhagwan Parshuram Institute Of Technology</h1>
+
+    <div class="personal-details">
+        <h2>Student Scorecard</h2>
+        <p><strong>Name:</strong> Amanul Hasan</p>
+        <p><strong>Enrollment No:</strong> 02820803122</p>
+        <p><strong>Class:</strong> IT-A</p>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Subject</th>
+                <th>Marks</th>
+                <th>Credits</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Technical Writing</td>
+                <td>68</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>Probability, Statistics, and Linear Programming</td>
+                <td>62</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>Theory of Computation</td>
+                <td>66</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>Circuits and Systems</td>
+                <td>64</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>Database Management System</td>
+                <td>67</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>Programming in Java</td>
+                <td>70</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>Theory of Computation Lab</td>
+                <td>80</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>Circuits and Systems Lab</td>
+                <td>82</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>Database Management System Lab</td>
+                <td>76</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>Programming in Java Lab</td>
+                <td>85</td>
+                <td>1</td>
+            </tr>
+            <tr class="total-row">
+                <td colspan="2">CGPA</td>
+                <td id="cgpa"></td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="calculate-btn" onclick="calculateCGPA()">Calculate CGPA</button>
+</div>
+
+<script>
+    function calculateCGPA() {
+        // Array of marks and credits for each subject
+        const data = [
+            { marks: 78, credits: 2 },
+            { marks: 72, credits: 4 },
+            { marks: 76, credits: 4 },
+            { marks: 84, credits: 4 },
+            { marks: 97, credits: 4 },
+            { marks: 78, credits: 4 },
+            { marks: 80, credits: 1 },
+            { marks: 82, credits: 1 },
+            { marks: 76, credits: 1 },
+            { marks: 85, credits: 1 }
+        ];
+
+        // Variables for total grade points and total credits
+        let totalGradePoints = 0;
+        let totalCredits = 0;
+
+        // Loop through each subject to calculate total grade points and credits
+        data.forEach(item => {
+            // Convert marks to grade points on a 10-point scale
+            let gradePoints = (item.marks / 10);
+            totalGradePoints += gradePoints * item.credits;
+            totalCredits += item.credits;
+        });
+
+        // Calculate CGPA
+        const cgpa = (totalGradePoints / totalCredits).toFixed(2);
+
+        // Display CGPA in the table row
+        document.getElementById("cgpa").innerText = cgpa;
+    }
+</script>
+
+</body>
+</html>
